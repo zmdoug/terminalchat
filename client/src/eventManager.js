@@ -21,8 +21,30 @@ export default class EventManager {
     this.#updateUsersComponent();
   }
 
-  #updateUsersComponent(allUsers) {
+  newUserConnected(message) {
+    const user = message;
+    this.#allUsers.set(user.id, user.userName);
+    this.#updateUsersComponent();
+    this.#updateActivityLogComponent(`${user.userName}  joined!`);
+  }
+
+  #updateActivityLogComponent(message) {
+    this.#emitComponentUpdate(
+      constants.events.app.ACTIVITYLOG_UPDATED,
+      message
+    );
+  }
+
+  #emitComponentUpdate(event, message) {
     this.componentEmitter.emit(
+      event,
+      message
+    );
+  }
+
+
+  #updateUsersComponent(allUsers) {
+    this.#emitComponentUpdate(
       constants.events.app.STATUS_UPDATED,
       Array.from(this.#allUsers.values())
     );

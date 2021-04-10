@@ -33,6 +33,23 @@ export default class Controller {
     // quais usuarios ja estao conectados na mesma sala
     this.socketServer.sendMessage(user.socket, constants.event.UPDATE_USERS, currentUsers);
 
+    //avisa a rede que um novo user conectou
+    this.broadCast({
+      socketId,
+      roomId,
+      message: { id: socketId, userName: userData.userName },
+      event: constants.event.NEW_USER_CONNECTED,
+    })
+  }
+
+  broadCast({ socketId, roomId, event, message, includeCurrentSocket = false }) {
+    const usersOnRoom = this.#rooms.get(roomId);
+
+    for (const [key, user] of usersOnRoom) {
+      if (!includeCurrentSocket && key === socketId) continue;
+
+      this.socketServer.sendMessage(user.socket, event, message)
+    }
   }
 
   #joinUserOnRoom(roomId, user) {
