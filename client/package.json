@@ -9,6 +9,8 @@
     "user02": "node index.js --username joaozinho --room sala01 --hostUri http://localhost:9898",
     "user03": "node index.js --username juca --room sala02 --hostUri http://localhost:9898",
     "user04": "node index.js --username pedro --room sala02 --hostUri http://localhost:9898",
+    "user05": "node index.js --username ale --room sala02 --hostUri https://hackerchat-dmz2.herokuapp.com",
+    "user06": "node index.js --username ju --room sala02 --hostUri https://hackerchat-dmz2.herokuapp.com",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
