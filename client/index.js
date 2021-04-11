@@ -1,3 +1,15 @@
+#!/usr/bin/env node
+
+
+/**
+ * chmod +x index.js
+ *
+ * ./index.js \
+ *      --username jorge \
+ *      --room sala01
+ */
+
+
 /*
 node index.js \
     --username erickwendel \
